@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/movie_list_item_margin"
+        app:cardCornerRadius="@dimen/movie_list_item_corner_radius"
+        android:background="@drawable/border_background"
+        android:id="@+id/cv_movie_card"
+        tools:layout_width="200dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <!-- Here we use an ImageView set inside a constraint layout instead of the ImageView
+             directly because we're interested in maintain a 1-1.5 aspect ration to the poster. -->
+            <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPosterBackgroundMovieItem">
+
+                <ImageView
+                    android:id="@+id/iv_poster_card"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/poster_thumbnail_content_description"
+                    android:scaleType="fitXY"
+                    app:layout_constraintDimensionRatio="H,1:1.5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/not_found" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- I use this instead of a compound drawable because it gives me a better
+            result when setting the color filter over an ImageView than over a Drawable
+            (setTint() works for API 21 or higher, and app's min is 19, while setColorFilter()
+            for drawable has been tested and the performance is far worse) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/movie_list_item_margin_inner"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_star_rating_card"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/rating_content_description"
+                    android:src="@drawable/star"/>
+
+                <TextView
+                    android:id="@+id/tv_rating_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/rating_content_description"
+                    android:textSize="@dimen/movie_list_item_rate_size"
+                    android:fontFamily="monospace"
+                    android:textAlignment="center"
+                    android:lines="1"
+                    android:text="@string/no_rating"
+                    tools:text="6.9"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/movie_list_item_margin_inner"
+                android:contentDescription="@string/title_content_description"
+                android:textAlignment="center"
+                android:textSize="@dimen/movie_list_item_title_size"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:lines="3"
+                android:text="@string/no_title"
+                tools:text="Creed II"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fl_loading_cards"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_gravity="center_horizontal"/>
+
+    </FrameLayout>
+
+</FrameLayout>

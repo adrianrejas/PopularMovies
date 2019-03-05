@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global -->
+    <string name="app_name">The Movie DB App</string>
+    <string name="api_query_language">es</string>
+    <string name="date_format">dd/MM/yyyy</string>
+
+    <!-- General -->
+    <string name="no_title">--</string>
+    <string name="no_rating">--</string>
+
+    <!-- Main activity -->
+    <string name="title_activity_main">The Movie DB</string>
+    <string name="popular_title">The Movie DB: Populares</string>
+    <string name="top_rated_title">The Movie DB: Más valoradas</string>
+    <string name="main_loading">Cargando …</string>
+
+    <!-- Details activity -->
+    <string name="title_activity_details">Detalles</string>
+    <string name="details_synopsis">&lt;b>Sinopsis:&lt;/b> %1$s</string>
+    <string name="details_release_date">&lt;b>Fecha de estreno:&lt;/b> %1$s</string>
+    <string name="no_release_date">--</string>
+    <string name="no_synopsis">--</string>
+    <string name="no_country">--</string>
+    <string name="no_genre">--</string>
+    <string name="details_loading">Cargando …</string>
+    <plurals name="details_countries">
+        <item quantity="one">&lt;b>País:&lt;/b> %s</item>
+        <item quantity="other">&lt;b>Paises:&lt;/b> %s</item>
+    </plurals>
+    <plurals name="details_genres">
+        <item quantity="one">&lt;b>Género:&lt;/b> %s</item>
+        <item quantity="other">&lt;b>Géneros:&lt;/b> %s</item>
+    </plurals>
+
+    <!-- Menu strings -->
+    <string name="menu_sort_popular">Ordenar por populares</string>
+    <string name="menu_sort_top_rated">Ordenar por más valoradas</string>
+
+    <!-- Errors -->
+    <string name="error_connection">Hubo un error en la conexión con el servidor.</string>
+    <string name="error_ui">Imposible cargar la interfaz de usuario.</string>
+
+    <!-- Accessibility -->
+    <string name="poster_thumbnail_content_description">Poster</string>
+    <string name="rating_content_description">Voto medio</string>
+    <string name="title_content_description">Título de la película</string>
+    <string name="country_content_description">Paises de origen</string>
+    <string name="gender_content_description">Géneros</string>
+    <string name="synopsis_content_description">Sinopsis</string>
+    <string name="error_content_description">Error</string>
+
+</resources>

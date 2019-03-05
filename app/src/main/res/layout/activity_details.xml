@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity">
+
+    <!-- This parent layout seems to be useless, but I maintain it in order for being details_layout
+     a FrameLayout in both portrait and landscape mode. If setting details_layout here to ScrollView
+     and maintaining it as FrameLayout in landscape mode, a ClassCastException will be thrown when
+     passing from landscape to portrait. It can be solutions to this, but I choose to maintain this
+     in order to avoid problems and because the lack of performance derived from this seems no be
+     minimal in target phones. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/details_layout"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/movie_details_padding">
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/half_guideline"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5"/>
+
+                <!-- Here we use an ImageView set inside a constraint layout instead of the ImageView
+                directly because we're interested in maintain a 1-1.5 aspect ration to the poster. -->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/iv_poster_details_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@id/half_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="@dimen/movie_details_margin_inner"
+                    android:layout_marginBottom="@dimen/movie_details_margin_inner">
+
+                    <ImageView
+                        android:id="@+id/iv_poster_details"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/poster_thumbnail_content_description"
+                        android:scaleType="fitXY"
+                        app:layout_constraintDimensionRatio="H,1:1.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/not_found" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_title_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/movie_details_margin_inner"
+                    app:layout_constraintStart_toEndOf="@id/half_guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@string/title_content_description"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/movie_details_title_size"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    tools:text="Creed II: I want this to be a really large text"/>
+
+                <!-- I use this instead of a compound drawable because it gives me a better
+                result when setting the color filter over an ImageView than over a Drawable
+                (setTint() works for API 21 or higher, and app's min is 19, while setColorFilter()
+                for drawable has been tested and the performance is far worse) -->
+                <LinearLayout
+                    android:id="@+id/ll_rate_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/movie_details_margin_inner"
+                    android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/half_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_details"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/iv_star_rating_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/rating_content_description"
+                        android:src="@drawable/star" />
+
+                    <TextView
+                        android:id="@+id/tv_rating_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/rating_content_description"
+                        android:fontFamily="monospace"
+                        android:lines="1"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/movie_details_rate_size"
+                        tools:text="6.9" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_release_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/movie_details_margin_inner"
+                    android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+                    app:layout_constraintStart_toEndOf="@id/half_guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_rate_details"
+                    android:contentDescription="@string/title_content_description"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/movie_details_release_size"
+                    android:fontFamily="monospace"
+                    android:singleLine="false"
+                    tools:text="Release date: 25/09/2019" />
+
+                <android.support.constraint.Barrier
+                    android:id="@+id/main_info_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="iv_poster_details_container, tv_release_details"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_genres_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_info_barrier"
+                    android:contentDescription="@string/gender_content_description"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/movie_details_release_size"
+                    android:fontFamily="monospace"
+                    android:singleLine="false"
+                    tools:text="Gender: Comedy" />
+
+                <TextView
+                    android:id="@+id/tv_countries_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_genres_details"
+                    android:contentDescription="@string/country_content_description"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/movie_details_release_size"
+                    android:fontFamily="monospace"
+                    android:singleLine="false"
+                    tools:text="Countries: EE.UU., Ireland" />
+
+                <TextView
+                    android:id="@+id/tv_overview_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+                    android:contentDescription="@string/synopsis_content_description"
+                    android:fontFamily="monospace"
+                    android:singleLine="false"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/movie_details_overview_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_countries_details"
+                    tools:text="Synopsis: This is a synopsis" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/movie_details_margin_big"
+        android:id="@+id/details_loading_layout"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:textAlignment="center"
+            android:textSize="@dimen/movie_details_loading_text_size"
+            android:fontFamily="monospace"
+            android:singleLine="true"
+            android:text="@string/details_loading" />
+
+    </LinearLayout>
+
+    <!-- I use this instead of a compound drawable because it gives me the possibility to
+     configure a margin between the image and the text just between the two. With a compound
+     drawable I have to define a padding for all the 4 sides of the drawable. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/movie_details_margin_big"
+        android:id="@+id/details_error_layout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/error_content_description"
+            android:src="@drawable/error" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_error_details"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:textAlignment="center"
+            android:textSize="@dimen/movie_details_error_text_size"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            tools:text="There was a problem with the application" />
+
+    </LinearLayout>
+
+</merge>

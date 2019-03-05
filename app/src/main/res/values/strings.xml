@@ -1,0 +1,52 @@
+<resources>
+    <!-- Global -->
+    <string name="app_name">The Movie DB App</string>
+    <string name="api_query_language">en</string>
+    <string name="date_format">dd/MM/yyyy</string>
+
+    <!-- General -->
+    <string name="no_title">--</string>
+    <string name="no_rating">--</string>
+
+    <!-- Main activity -->
+    <string name="title_activity_main">The Movie DB</string>
+    <string name="popular_title">The Movie DB: Popular films</string>
+    <string name="top_rated_title">The Movie DB: Top rated films</string>
+    <string name="main_loading">Loading …</string>
+
+    <!-- Details activity -->
+    <string name="title_activity_details">Movie details</string>
+    <string name="details_synopsis">&lt;b>Synopsis:&lt;/b> %1$s</string>
+    <string name="details_release_date">&lt;b>Release date:&lt;/b> %1$s</string>
+    <string name="no_release_date">--</string>
+    <string name="no_synopsis">--</string>
+    <string name="no_country">--</string>
+    <string name="no_genre">--</string>
+    <string name="details_loading">Loading …</string>
+    <plurals name="details_countries">
+        <item quantity="one">&lt;b>Country:&lt;/b> %s</item>
+        <item quantity="other">&lt;b>Countries:&lt;/b> %s</item>
+    </plurals>
+    <plurals name="details_genres">
+        <item quantity="one">&lt;b>Gender:&lt;/b> %s</item>
+        <item quantity="other">&lt;b>Genders:&lt;/b> %s</item>
+    </plurals>
+
+    <!-- Menu strings -->
+    <string name="menu_sort_popular">Sort by most popular</string>
+    <string name="menu_sort_top_rated">Sort by top rated</string>
+
+    <!-- Errors -->
+    <string name="error_connection">There was an error connecting with the server.</string>
+    <string name="error_ui">Unable to load interface.</string>
+
+    <!-- Accessibility -->
+    <string name="poster_thumbnail_content_description">Poster thumbnail</string>
+    <string name="rating_content_description">Average vote rating</string>
+    <string name="title_content_description">Movie Title</string>
+    <string name="country_content_description">Origin countries</string>
+    <string name="gender_content_description">Genders</string>
+    <string name="synopsis_content_description">Synopsis</string>
+    <string name="error_content_description">Error</string>
+
+</resources>
