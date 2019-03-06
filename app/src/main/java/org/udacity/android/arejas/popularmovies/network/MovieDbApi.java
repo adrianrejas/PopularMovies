@@ -69,7 +69,8 @@ public class MovieDbApi {
 
     private static final String MOVIEDBAPI_BASE = "https://api.themoviedb.org/3/";
 
-    private static final String API_KEY = "94adaaddf36766bcd826206447b409ec";
+    /* Set here the API key to use */
+    private static final String API_KEY = "SET_API_KEY_HERE";
 
     private static Retrofit retrofit;
     private static MovieDbApService service;
