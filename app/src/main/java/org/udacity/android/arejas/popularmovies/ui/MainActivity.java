@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 mOptionsMenu.findItem(R.id.menu_sort_top_rated).setVisible(false);
                 mOptionsMenu.findItem(R.id.menu_sort_favorites).setVisible(true);
             }
-            setTitle(getString(R.string.popular_title));
+            setTitle(getString(R.string.top_rated_title));
         } else {
             if (mOptionsMenu != null) {
                 mOptionsMenu.findItem(R.id.menu_sort_popular).setVisible(true);
