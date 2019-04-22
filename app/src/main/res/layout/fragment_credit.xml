@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_credits_list"
+            android:visibility="gone"
+            tools:visibility="gone"/>
+
+        <include
+            android:id="@+id/credits_loading_layout"
+            layout="@layout/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/movie_details_margin_big"
+            android:orientation="vertical"/>
+
+        <include
+            android:id="@+id/credits_error_layout"
+            layout="@layout/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/movie_details_margin_big"
+            android:orientation="vertical"/>
+
+        <include
+            android:id="@+id/credits_no_elements_layout"
+            layout="@layout/layout_no_elements"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/movie_details_margin_big"
+            android:orientation="vertical"/>
+
+    </FrameLayout>
+
+</layout>

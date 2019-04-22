@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="movie_list_item_margin">10dp</dimen>
-    <dimen name="movie_list_item_margin_big">25dp</dimen>
     <dimen name="movie_list_item_margin_inner">5dp</dimen>
     <dimen name="movie_list_item_margin_inner_big">15dp</dimen>
     <dimen name="movie_list_item_border">1dp</dimen>
     <dimen name="movie_list_item_corner_radius">3dp</dimen>
-    <dimen name="movie_list_item_rate_size">14sp</dimen>
     <dimen name="movie_list_item_title_size">16sp</dimen>
-    <dimen name="movie_list_loading_text_size">16sp</dimen>
-    <dimen name="movie_list_error_text_size">16sp</dimen>
 
     <integer name="movie_list_items_per_row">5</integer>
 

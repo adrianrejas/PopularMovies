@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <variable name="author" type="String"/>
+        <variable name="text" type="String"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.ReviewActivity">
+
+            <TextView
+                android:id="@+id/tv_author_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/title_content_description"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/movie_details_title_size"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:text="@{author}"
+                android:layout_margin="@dimen/movie_details_margin_inner"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_text_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/title_content_description"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/movie_details_release_size"
+                android:fontFamily="monospace"
+                android:text="@{text}"
+                android:layout_margin="@dimen/movie_details_margin_inner"
+                app:layout_constraintTop_toBottomOf="@id/tv_author_review"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

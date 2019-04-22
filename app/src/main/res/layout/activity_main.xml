@@ -1,80 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_layout"
-        android:visibility="gone">
+        android:id="@+id/srl_refresh_layout">
 
-        <android.support.v7.widget.RecyclerView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rv_movie_list"
-            tools:visibility="gone"/>
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv_movie_list"
+                android:visibility="gone"
+                tools:visibility="gone"/>
+
+            <include
+                android:id="@+id/main_loading_layout"
+                layout="@layout/layout_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/movie_details_margin_big"
+                android:orientation="vertical"/>
+
+            <include
+                android:id="@+id/main_error_layout"
+                layout="@layout/layout_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/movie_details_margin_big"
+                android:orientation="vertical"/>
+
+            <include
+                android:id="@+id/main_no_elements_layout"
+                layout="@layout/layout_no_elements"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/movie_details_margin_big"
+                android:orientation="vertical"/>
+
+        </FrameLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/movie_list_item_margin_big"
-        android:id="@+id/main_loading_layout"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Base.Widget.AppCompat.ProgressBar"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/movie_list_item_margin_inner_big"
-            android:textAlignment="center"
-            android:textSize="@dimen/movie_list_loading_text_size"
-            android:fontFamily="monospace"
-            android:singleLine="true"
-            android:text="@string/main_loading" />
-
-    </LinearLayout>
-
-    <!-- I use this instead of a compound drawable because it gives me the possibility to
-     configure a margin between the image and the text just between the two. With a compound
-     drawable I have to define a padding for all the 4 sides of the drawable. -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/movie_list_item_margin_big"
-        android:id="@+id/main_error_layout"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/error_content_description"
-            android:src="@drawable/error" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_error_main"
-            android:layout_marginTop="@dimen/movie_list_item_margin_inner_big"
-            android:textAlignment="center"
-            android:textSize="@dimen/movie_list_error_text_size"
-            android:fontFamily="monospace"
-            android:singleLine="false"
-            tools:text="There was a problem with the application" />
-
-    </LinearLayout>
-
-</merge>
+</layout>

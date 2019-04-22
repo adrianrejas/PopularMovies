@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <variable
+            name="movieCreditItem"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieCreditsItem" />
+        <import type="org.udacity.android.arejas.popularmovies.data.entities.MovieCreditsItem"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/movie_list_item_margin_inner"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_photo_credit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/photo_thumbnail_content_description"
+            android:scaleType="fitXY"
+            app:imageUrl="@{movieCreditItem.profilePath}"
+            app:errorResource="@{@drawable/not_found}"
+            app:loadingResource="@{@drawable/loading}"
+            app:layout_constraintDimensionRatio="H,1:1.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorPosterBackgroundMovieItem"
+            tools:src="@drawable/not_found" />
+
+        <TextView
+            android:id="@+id/tv_name_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movie_list_item_margin_inner"
+            android:contentDescription="@string/name_content_description"
+            android:textAlignment="center"
+            android:textSize="@dimen/movie_list_item_title_size"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{ (movieCreditItem.name != null) ? movieCreditItem.name : @string/no_name }"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo_credit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Brad Pitt"/>
+
+        <TextView
+            android:id="@+id/tv_role_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movie_list_item_margin_inner"
+            android:contentDescription="@string/role_content_description"
+            android:textAlignment="center"
+            android:textSize="@dimen/movie_list_item_title_size"
+            android:fontFamily="monospace"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{ (movieCreditItem.job.equals(MovieCreditsItem.ACTOR_JOB)) ? ((movieCreditItem.character != null) ? movieCreditItem.character : @string/no_name ) : ((movieCreditItem.job != null) ? movieCreditItem.job : @string/no_name )}"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_credit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Brad Pitt"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="movieDetails"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieDetails" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- This parent layout seems to be useless, but I maintain it in order for being details_layout
+         a ConstraintLayout in both portrait and landscape mode. If setting details_layout here to ScrollView
+         and maintaining it as FrameLayout in landscape mode, a ClassCastException will be thrown when
+         passing from landscape to portrait. It can be solutions to this, but I choose to maintain this
+         in order to avoid problems and because the lack of performance derived from this seems no be
+         minimal in target phones. -->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/details_layout"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/movie_details_padding">
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/half_guideline"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5"/>
+
+                    <ImageView
+                        android:id="@+id/iv_poster_details"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/poster_thumbnail_content_description"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        app:imageUrl="@{movieDetails.posterPath}"
+                        app:errorResource="@{@drawable/not_found}"
+                        app:loadingResource="@{@drawable/loading}"
+                        android:background="@color/colorPosterBackgroundMovieItem"
+                        app:layout_constraintDimensionRatio="H,1.5:1"
+                        app:layout_constraintEnd_toStartOf="@id/half_guideline"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/not_found" />
+
+                    <include
+                        android:id="@+id/incl_basic_info"
+                        layout="@layout/layout_details_basic"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/movie_details_margin_inner"
+                        android:layout_marginTop="@dimen/movie_details_margin_inner"
+                        bind:movieDetails="@{movieDetails}"
+                        app:layout_constraintStart_toEndOf="@id/iv_poster_details"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"  />
+
+                    <android.support.constraint.Barrier
+                        android:id="@+id/main_info_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="bottom"
+                        app:constraint_referenced_ids="iv_poster_details, incl_basic_info"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <include
+                        android:id="@+id/incl_extra_info"
+                        layout="@layout/layout_details_extra"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/movie_details_margin_inner"
+                        bind:movieDetails="@{movieDetails}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/main_info_barrier" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </ScrollView>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <include
+            android:id="@+id/details_loading_layout"
+            layout="@layout/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/movie_details_margin_big"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="gone"/>
+
+        <include
+            android:id="@+id/details_error_layout"
+            layout="@layout/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/movie_details_margin_big"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone"/>
+
+    </FrameLayout>
+
+</layout>

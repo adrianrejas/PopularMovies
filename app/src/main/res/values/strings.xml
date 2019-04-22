@@ -2,26 +2,45 @@
     <!-- Global -->
     <string name="app_name">The Movie DB App</string>
     <string name="api_query_language">en</string>
+    <string name="api_query_language_default" translatable="false">en</string>
     <string name="date_format">dd/MM/yyyy</string>
 
     <!-- General -->
-    <string name="no_title">--</string>
-    <string name="no_rating">--</string>
+    <string name="no_title" translatable="false">--</string>
+    <string name="no_rating" translatable="false">--</string>
+    <string name="no_release_date" translatable="false">--</string>
+    <string name="no_synopsis" translatable="false">--</string>
+    <string name="no_country" translatable="false">--</string>
+    <string name="no_genre" translatable="false">--</string>
+    <string name="no_companies" translatable="false">--</string>
+    <string name="no_budget" translatable="false">--</string>
+    <string name="no_revenue" translatable="false">--</string>
+    <string name="no_web" translatable="false">--</string>
+    <string name="no_name" translatable="false">--</string>
+    <string name="no_elements_in_list">There are no elements in the list shown.</string>
 
     <!-- Main activity -->
     <string name="title_activity_main">The Movie DB</string>
     <string name="popular_title">The Movie DB: Popular films</string>
-    <string name="top_rated_title">The Movie DB: Top rated films</string>
-    <string name="main_loading">Loading …</string>
+    <string name="favorites_title">The Movie DB: Favorite films</string>
 
-    <!-- Details activity -->
+    <!-- Movie activity -->
+    <string name="movie_tab_details">Details</string>
+    <string name="movie_tab_cast">Cast</string>
+    <string name="movie_tab_crew">Crew</string>
+    <string name="movie_tab_reviews">Reviews</string>
+    <string name="movie_tab_videos">Videos</string>
+    <string name="menu_is_favorite">Set favorite</string>
+    <string name="menu_is_not_favorite">Unset favorite</string>
+    <string name="setting_favorite">Setting movie to favorite …</string>
+    <string name="unsetting_favorite">Unsetting movie to favorite …</string>
+    <string name="set_favorite">Movie set to favorite</string>
+    <string name="unset_favorite">Movie unset to favorite</string>
+
+    <!-- Details fragment -->
     <string name="title_activity_details">Movie details</string>
     <string name="details_synopsis">&lt;b>Synopsis:&lt;/b> %1$s</string>
     <string name="details_release_date">&lt;b>Release date:&lt;/b> %1$s</string>
-    <string name="no_release_date">--</string>
-    <string name="no_synopsis">--</string>
-    <string name="no_country">--</string>
-    <string name="no_genre">--</string>
     <string name="details_loading">Loading …</string>
     <plurals name="details_countries">
         <item quantity="one">&lt;b>Country:&lt;/b> %s</item>
@@ -31,14 +50,24 @@
         <item quantity="one">&lt;b>Gender:&lt;/b> %s</item>
         <item quantity="other">&lt;b>Genders:&lt;/b> %s</item>
     </plurals>
+    <plurals name="details_companies">
+        <item quantity="one">&lt;b>Producer:&lt;/b> %s</item>
+        <item quantity="other">&lt;b>Producers:&lt;/b> %s</item>
+    </plurals>
+    <string name="details_budget">&lt;b>Budget:&lt;/b> %s $</string>
+    <string name="details_revenue">&lt;b>Revenue:&lt;/b> %s $</string>
+    <string name="details_web">&lt;b>&lt;a href=\"%s\">Web&lt;/a>&lt;/b></string>
 
     <!-- Menu strings -->
-    <string name="menu_sort_popular">Sort by most popular</string>
-    <string name="menu_sort_top_rated">Sort by top rated</string>
+    <string name="menu_sort_popular">Show most popular</string>
+    <string name="menu_sort_top_rated">Show top rated</string>
+    <string name="menu_sort_favorites">Show favorites</string>
 
     <!-- Errors -->
+    <string name="error_data">There was an error loading requested data.</string>
     <string name="error_connection">There was an error connecting with the server.</string>
     <string name="error_ui">Unable to load interface.</string>
+    <string name="error_no_web">Movie web not available</string>
 
     <!-- Accessibility -->
     <string name="poster_thumbnail_content_description">Poster thumbnail</string>
@@ -48,5 +77,13 @@
     <string name="gender_content_description">Genders</string>
     <string name="synopsis_content_description">Synopsis</string>
     <string name="error_content_description">Error</string>
+    <string name="tagline_description">Movie tagline</string>
+    <string name="companies_content_description">Production companies</string>
+    <string name="budget_content_description">Budget</string>
+    <string name="revenue_content_description">Revenue</string>
+    <string name="web_content_description">Web</string>
+    <string name="photo_thumbnail_content_description">Photo thumbnail</string>
+    <string name="name_content_description">Name</string>
+    <string name="role_content_description">Role</string>
 
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_is_favorite"
+        android:title="@string/menu_is_favorite"
+        android:icon="@drawable/favorite"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/menu_is_not_favorite"
+        android:title="@string/menu_is_not_favorite"
+        android:icon="@drawable/not_favorite"
+        app:showAsAction="ifRoom"
+        android:visible="true"/>
+
+</menu>

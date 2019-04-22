@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <variable
+            name="movieItem"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieListItem" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_movie_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/movie_list_item_margin"
+        android:background="@drawable/card_border_background"
+        app:cardCornerRadius="@dimen/movie_list_item_corner_radius"
+        tools:layout_width="200dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/iv_poster_card"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/poster_thumbnail_content_description"
+                android:scaleType="fitXY"
+                app:imageUrl="@{movieItem.posterPath}"
+                app:errorResource="@{@drawable/not_found}"
+                app:loadingResource="@{@drawable/loading}"
+                android:background="@color/colorPosterBackgroundMovieItem"
+                app:layout_constraintDimensionRatio="H,1:1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/not_found" />
+
+            <ImageView
+                android:id="@+id/iv_star_rating_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/movie_details_margin_inner"
+                android:contentDescription="@string/rating_content_description"
+                android:src="@drawable/star"
+                app:voteAverage="@{movieItem.voteAverage}"
+                app:layout_constraintEnd_toStartOf="@id/tv_rating_card"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_poster_card" />
+
+            <TextView
+                android:id="@+id/tv_rating_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/rating_content_description"
+                android:fontFamily="monospace"
+                android:lines="1"
+                app:voteAverage="@{movieItem.voteAverage}"
+                android:textAlignment="center"
+                android:textSize="@dimen/movie_details_rate_size"
+                app:layout_constraintBottom_toTopOf="@id/iv_star_rating_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_star_rating_card"
+                app:layout_constraintTop_toBottomOf="@id/iv_star_rating_card"
+                tools:text="6.9" />
+
+            <TextView
+                android:id="@+id/tv_title_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/movie_list_item_margin_inner"
+                android:contentDescription="@string/title_content_description"
+                android:ellipsize="end"
+                android:fontFamily="monospace"
+                android:lines="3"
+                android:text="@{ (movieItem.title != null) ? movieItem.title : @string/no_title }"
+                android:textAlignment="center"
+                android:textSize="@dimen/movie_list_item_title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_star_rating_card"
+                tools:text="Creed II I want to be really large this text, am I getting this?"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

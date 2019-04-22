@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.udacity.android.arejas.popularmovies"
     tools:ignore="GoogleAppIndexingWarning">
+
     <!-- I considered the Google Search indexing unnecesary, at least for now. -->
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MoviesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,10 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup,UnusedAttribute">
+
         <!-- tools:ignore="AllowBackup": Ignoring this because no data needs to be backed up. -->
         <!-- android:usesCleartextTraffic="true": Solves problem with Picasso library for Android 28 -->
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".ui.MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailsActivity"
+        <activity
+            android:name=".ui.MovieActivity"
             android:label="@string/title_activity_details" />
+        <activity android:name=".ui.ReviewActivity" />
     </application>
 
 </manifest>

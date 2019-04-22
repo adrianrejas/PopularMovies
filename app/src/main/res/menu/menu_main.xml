@@ -6,11 +6,18 @@
         android:id="@+id/menu_sort_popular"
         android:title="@string/menu_sort_popular"
         app:showAsAction="never"
-        android:visible="true"/>
+        android:visible="false"/>
 
     <item
         android:id="@+id/menu_sort_top_rated"
         android:title="@string/menu_sort_top_rated"
         app:showAsAction="never"
-        android:visible="false"/>
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/menu_sort_favorites"
+        android:title="@string/menu_sort_favorites"
+        app:showAsAction="never"
+        android:visible="true"/>
+
 </menu>

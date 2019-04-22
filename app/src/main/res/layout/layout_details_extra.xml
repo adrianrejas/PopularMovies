@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="org.udacity.android.arejas.popularmovies.utils.Utils"/>
+        <variable
+            name="movieDetails"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieDetails" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_genres_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/gender_content_description"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_release_size"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            app:dataList="@{movieDetails.genres}"
+            app:textIntro="@{@plurals/details_genres((movieDetails.genres != null) ? movieDetails.genres.size() : 1)}"
+            app:noData="@{@string/no_genre}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Gender: Comedy" />
+
+        <TextView
+            android:id="@+id/tv_countries_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/country_content_description"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_release_size"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            app:dataList="@{movieDetails.productionCountries}"
+            app:textIntro="@{@plurals/details_countries((movieDetails.productionCountries != null) ? movieDetails.productionCountries.size() : 1)}"
+            app:noData="@{@string/no_country}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_genres_details"
+            tools:text="Countries: EE.UU., Ireland" />
+
+        <TextView
+            android:id="@+id/tv_overview_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/synopsis_content_description"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_overview_size"
+            app:dataText="@{movieDetails.synopsis}"
+            app:textIntro="@{@string/details_synopsis}"
+            app:noData="@{@string/no_synopsis}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_countries_details"
+            tools:text="Synopsis: This is a synopsis. A really large synopsis. We describe here what's the film about."/>
+
+        <TextView
+            android:id="@+id/tv_companies_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/companies_content_description"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_overview_size"
+            app:dataList="@{movieDetails.productionCompanies}"
+            app:textIntro="@{@plurals/details_companies((movieDetails.productionCompanies != null) ? movieDetails.productionCompanies.size() : 1)}"
+            app:noData="@{@string/no_companies}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_overview_details"
+            tools:text="Produced by: Universal Pictures"/>
+
+        <TextView
+            android:id="@+id/tv_budget_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/budget_content_description"
+            android:fontFamily="monospace"
+            android:singleLine="true"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_overview_size"
+            android:visibility="@{ ((movieDetails.budget != null) &amp;&amp; (safeUnbox(movieDetails.budget) &gt; 0)) ? View.VISIBLE : View.GONE }"
+            app:dataInt="@{movieDetails.budget}"
+            app:textIntro="@{@string/details_budget}"
+            app:noData="@{@string/no_budget}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_companies_details"
+            tools:text="Budget: 180.000.000 $"/>
+
+        <TextView
+            android:id="@+id/tv_revenue_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/revenue_content_description"
+            android:fontFamily="monospace"
+            android:singleLine="true"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_overview_size"
+            android:visibility="@{ ((movieDetails.revenue != null) &amp;&amp; (safeUnbox(movieDetails.revenue) &gt; 0)) ? View.VISIBLE : View.GONE }"
+            app:dataInt="@{movieDetails.revenue}"
+            app:textIntro="@{@string/details_revenue}"
+            app:noData="@{@string/no_revenue}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_budget_details"
+            tools:text="Revenue: 540.000.000 $"/>
+
+        <TextView
+            android:id="@+id/tv_web_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner_big"
+            android:contentDescription="@string/web_content_description"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_overview_size"
+            app:dataText="@{movieDetails.homepage}"
+            app:textIntro="@{@string/details_web}"
+            app:noData="@{@string/no_web}"
+            android:onClick="@{() -> Utils.launchWebPage(movieDetails.homepage)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_revenue_details"
+            tools:text="Web: http://www.google.es"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

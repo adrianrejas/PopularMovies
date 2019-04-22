@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <data>
+        <variable
+            name="movieVideoItem"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieVideoItem" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/movie_list_item_margin_inner_big"
+        android:paddingBottom="@dimen/movie_list_item_margin_inner_big"
+        android:background="@drawable/list_item_border_bottom_background">
+
+        <ImageView
+            android:id="@+id/iv_icon_video"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movie_details_margin_inner"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/poster_thumbnail_content_description"
+            android:scaleType="fitXY"
+            app:layout_constraintHorizontal_weight="20"
+            app:layout_constraintEnd_toStartOf="@id/tv_name_video"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/video" />
+
+        <TextView
+            android:id="@+id/tv_name_video"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movie_list_item_margin_inner"
+            android:contentDescription="@string/title_content_description"
+            android:textSize="@dimen/movie_list_item_title_size"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:lines="3"
+            android:gravity="center_vertical"
+            android:text="@{ (movieVideoItem.name != null) ? movieVideoItem.name : @string/no_name }"
+            app:layout_constraintHorizontal_weight="80"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_icon_video"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon_video"
+            app:layout_constraintBottom_toTopOf="@id/iv_icon_video"
+            tools:text="Steven Wharhone"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

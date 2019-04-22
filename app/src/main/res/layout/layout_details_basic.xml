@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="movieDetails"
+            type="org.udacity.android.arejas.popularmovies.data.entities.MovieDetails" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_star_rating_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/rating_content_description"
+            android:src="@drawable/star"
+            app:voteAverage="@{movieDetails.voteAverage}"
+            app:layout_constraintEnd_toStartOf="@id/tv_rating_details"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tagline_details" />
+
+        <TextView
+            android:id="@+id/tv_rating_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/rating_content_description"
+            android:fontFamily="monospace"
+            android:lines="1"
+            android:text="@string/no_rating"
+            android:textAlignment="center"
+            android:textSize="@dimen/movie_details_rate_size"
+            app:voteAverage="@{movieDetails.voteAverage}"
+            app:layout_constraintBottom_toTopOf="@id/iv_star_rating_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_star_rating_details"
+            app:layout_constraintTop_toBottomOf="@id/iv_star_rating_details"
+            tools:text="6.9" />
+
+        <TextView
+            android:id="@+id/tv_tagline_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/tagline_description"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:visibility="@{ ((movieDetails.tagline != null) &amp;&amp; (!movieDetails.tagline.isEmpty())) ? View.VISIBLE : View.GONE }"
+            android:text="@{ (movieDetails.tagline != null) ? movieDetails.tagline : `` }"
+            android:textSize="@dimen/movie_details_rate_size"
+            android:layout_marginTop="@dimen/movie_details_margin_inner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_star_rating_details"
+            tools:text="This is a test of what a tagline can be. It can be soooooo large and reaaally reaaaaaly large" />
+
+        <TextView
+            android:id="@+id/tv_release_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/movie_details_margin_inner"
+            android:contentDescription="@string/title_content_description"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/movie_details_release_size"
+            android:fontFamily="monospace"
+            android:singleLine="false"
+            app:date="@{movieDetails.releaseDate}"
+            app:dateFormat="@{@string/date_format}"
+            app:textIntro="@{@string/details_release_date}"
+            app:noData="@{@string/no_release_date}"
+            app:layout_constraintTop_toBottomOf="@id/tv_tagline_details"
+            tools:text="Release date: 25/09/2019" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
